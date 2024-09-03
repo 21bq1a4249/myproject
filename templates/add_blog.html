@@ -1,0 +1,110 @@
+<!-- templates/add_blog.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Blog</title>
+    <style>
+        /* You can reuse your existing CSS styling here */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(45deg, #ff6e7f, #bfe9ff);
+            background-size: 200% 200%;
+            animation: waveBackground 10s ease infinite;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .navbar {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            padding: 1rem;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .navbar h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            margin-left: 1rem;
+        }
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            padding: 2rem;
+            flex: 1;
+            overflow-y: auto;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            max-width: 600px;
+            margin: auto;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        input[type="text"], textarea {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            width: 100%;
+        }
+        button {
+            padding: 0.8rem;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        @keyframes waveBackground {
+            0% {
+                background-position: 0% 0%;
+            }
+            50% {
+                background-position: 100% 100%;
+            }
+            100% {
+                background-position: 0% 0%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h1>Add Blog</h1>
+        <div>
+            <a href="/">Home</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+    <div class="container">
+        <form action="/add-blog" method="post">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required>
+            <label for="content">Content:</label>
+            <textarea id="content" name="content" rows="6" required></textarea>
+            <button type="submit">Add Blog</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(45deg, #ff6e7f, #bfe9ff, #ff6e7f, #bfe9ff);
+            background-size: 200% 200%;
+            animation: waveBackground 10s ease infinite;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .navbar {
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            padding: 1rem;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .navbar h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            margin-left: 1rem;
+        }
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            padding: 2rem;
+            flex: 1;
+            overflow-y: auto;
+        }
+        h2 {
+            margin-bottom: 0.5rem;
+        }
+        p {
+            margin: 0.5rem 0;
+        }
+        form {
+            margin-bottom: 1rem;
+        }
+        button {
+            padding: 0.8rem;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        label {
+            font-weight: bold;
+            color: #333;
+        }
+        input[type="text"] {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        @keyframes waveBackground {
+            0% {
+                background-position: 0% 0%;
+            }
+            50% {
+                background-position: 100% 100%;
+            }
+            100% {
+                background-position: 0% 0%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h1>BLOGS</h1>
+        <div>
+            <a href="/add-blog">Add Blog</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+    <div class="container">
+        {% for blog in blogs %}
+            <h2>{{ blog.title }}</h2>
+            <p>{{ blog.content }}</p>
+            <p>Likes: {{ blog.likes }}</p>
+            <form action="/like/{{ blog.id }}" method="post">
+                <button type="submit">Like</button>
+            </form>
+            <h3>Comments</h3>
+            {% for comment in blog.comments %}
+                <p>{{ comment.text }} - {{ comment.author }}</p>
+            {% endfor %}
+            <form action="/comment/{{ blog.id }}" method="post">
+                <label for="comment">Add Comment:</label>
+                <input type="text" id="comment" name="comment" required>
+                <button type="submit">Submit</button>
+            </form>
+        {% endfor %}
+    </div>
+</body>
+</html>
